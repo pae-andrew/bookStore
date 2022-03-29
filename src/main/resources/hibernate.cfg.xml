@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-34-197-84-74.compute-1.amazonaws.com:5432/da3o79mdnbm3md</property>
+        <property name="hibernate.connection.username">bsqkwjfbjuwvks</property>
+        <property name="hibernate.connection.password">4fe7569bb9b1720d94234632cdb73f62182cb89b7a65b46aa47fc540c716a754</property>
+        <!-- JDBC connection pool (use the built-in) -->
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQL92Dialect</property>
+
+        <mapping class="ru.learnUp.lesson23.hibernate.dao.entity.Author" />
+        <mapping class="ru.learnUp.lesson23.hibernate.dao.entity.Book" />
+        <mapping class="ru.learnUp.lesson23.hibernate.dao.entity.BookStorage" />
+        <mapping class="ru.learnUp.lesson23.hibernate.dao.entity.Client" />
+        <mapping class="ru.learnUp.lesson23.hibernate.dao.entity.Order" />
+        <mapping class="ru.learnUp.lesson23.hibernate.dao.entity.OrderDetails" />
+
+    </session-factory>
+</hibernate-configuration>
