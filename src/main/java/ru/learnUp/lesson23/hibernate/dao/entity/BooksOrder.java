@@ -15,7 +15,7 @@ import java.util.Objects;
 public class BooksOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
