@@ -4,33 +4,33 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "client")
+@Table(name = "booksOrder")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Client {
+public class BooksOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private String fullName;
+    @OneToOne
+    @JoinColumn
+    private Client client;
 
     @Column
-    private Date birthDate;
+    private int orderCost;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Client client = (Client) o;
-        return id != null && Objects.equals(id, client.id);
+        BooksOrder order = (BooksOrder) o;
+        return id != null && Objects.equals(id, order.id);
     }
 
     @Override
