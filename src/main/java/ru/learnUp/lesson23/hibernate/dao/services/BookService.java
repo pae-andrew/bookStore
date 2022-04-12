@@ -1,5 +1,6 @@
 package ru.learnUp.lesson23.hibernate.dao.services;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.repository.BookRepository;
@@ -23,7 +24,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    @Cacheable(value = "Book")
     public Book getBookById(Long id) {
-        return bookRepository.getById(id);
+        return bookRepository.findBook1(id);
     }
 }

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import ru.learnUp.lesson23.hibernate.dao.entity.Author;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
@@ -12,6 +13,7 @@ import ru.learnUp.lesson23.hibernate.dao.repository.BookRepository;
 import ru.learnUp.lesson23.hibernate.dao.services.*;
 
 @SpringBootApplication
+@EnableCaching
 public class HibernateApplication {
 
 	public static final Logger log = LoggerFactory.getLogger(HibernateApplication.class);
@@ -36,6 +38,10 @@ public class HibernateApplication {
 //		log.info("book orders: {}", booksOrderService.getBooksOrders());
 		BookRepository bookRepository = context.getBean(BookRepository.class);
 		log.info("Search result: {}", bookRepository.findByAuthor("Erich Maria Remarque"));
+
+		for (int i = 0; i < 5; i++) {
+			log.info("Book id = 1: {}", bookService.getBookById(1L));
+		}
 	}
 
 }
