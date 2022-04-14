@@ -1,6 +1,8 @@
 package ru.learnUp.lesson23.hibernate.dao.services;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.learnUp.lesson23.hibernate.dao.entity.Author;
 import ru.learnUp.lesson23.hibernate.dao.repository.AuthorRepository;
 
@@ -15,6 +17,7 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    @Transactional
     public Author createAuthor(Author author) {
         return authorRepository.save(author);
     }
@@ -25,5 +28,11 @@ public class AuthorService {
 
     public Author getAuthorById(Long id) {
         return authorRepository.getById(id);
+    }
+
+    @Transactional
+    @CacheEvict(value = "author", key = "#author.id")
+    public void update(Author author) {
+            authorRepository.save(author);
     }
 }
