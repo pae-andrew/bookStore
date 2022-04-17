@@ -1,7 +1,6 @@
 package ru.learnUp.lesson23.hibernate.dao.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 
@@ -23,4 +22,7 @@ public class BookStorage {
 
     @Column
     private int countOfBooks;
+
+    @Version
+    private long version;
 }

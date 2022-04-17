@@ -3,11 +3,9 @@ package ru.learnUp.lesson23.hibernate.dao.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.redis.core.RedisHash;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
