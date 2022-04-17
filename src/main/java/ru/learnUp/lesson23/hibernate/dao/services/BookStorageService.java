@@ -35,7 +35,6 @@ public class BookStorageService {
         return bookStorageRepository.getById(id);
     }
 
-    @Lock(value = LockModeType.READ)
     public BookStorage getStorageByBook(Book book) {
         return bookStorageRepository.getByBook(book);
     }
