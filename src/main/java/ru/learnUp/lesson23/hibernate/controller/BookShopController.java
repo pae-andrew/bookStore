@@ -24,7 +24,7 @@ public class BookShopController {
         this.context = context;
     }
 
-    // http://localhost:8080/bookshop/home
+    // http://localhost:8080/bookshop/
     @GetMapping
     public String home(Model model) {
         return "home";
