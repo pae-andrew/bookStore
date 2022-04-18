@@ -20,7 +20,7 @@ public class HibernateApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(HibernateApplication.class, args);
 
 		BookService bookService = context.getBean(BookService.class);
-		BookStorageService bookStorageService = context.getBean((BookStorageService.class));
+//		BookStorageService bookStorageService = context.getBean((BookStorageService.class));
 
 		// -- Check method Searching book by author
 //		log.info("Search result: {}", bookService.getBookByAuthor("Erich Maria Remarque"));
@@ -31,7 +31,7 @@ public class HibernateApplication {
 //		log.info("Rest of {} book = {}", id, bookStorageService.addBook(bookService.getBookById(id), 5));
 
 		// -- Check locks for update bookStorage
-		updateAsync(bookStorageService, bookService.getBookById(1L));
+//		updateAsync(bookStorageService, bookService.getBookById(1L));
 	}
 
 	static void updateAsync(BookStorageService service, Book book) {

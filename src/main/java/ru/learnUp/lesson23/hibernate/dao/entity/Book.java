@@ -11,6 +11,9 @@ import java.io.Serializable;
 @Setter
 @RequiredArgsConstructor
 @ToString
+@Builder
+//@NoArgsConstructor
+@AllArgsConstructor
 public class Book implements Serializable {
 
     @Id
