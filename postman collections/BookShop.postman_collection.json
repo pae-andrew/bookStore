@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "1100893a-0bd5-46f1-8c1e-7551f80d2b2e",
+		"name": "BookShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BooksController",
+			"item": [
+				{
+					"name": "create book",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get books by filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update book",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete book by name",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete book by id",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AuthorsController",
+			"item": []
+		}
+	]
+}
