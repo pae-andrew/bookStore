@@ -16,6 +16,7 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 @ToString
+@AllArgsConstructor
 public class Author implements Serializable {
 
     @Id

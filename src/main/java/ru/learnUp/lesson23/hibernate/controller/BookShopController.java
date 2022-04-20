@@ -1,7 +1,6 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +17,12 @@ import java.util.List;
 @RequestMapping("/bookshop")
 public class BookShopController {
 
-    private final ApplicationContext context;
+    private final BookService bookService;
+    private final AuthorService authorService;
 
-    public BookShopController(ApplicationContext context) {
-        this.context = context;
+    public BookShopController(BookService bookService, AuthorService authorService) {
+        this.bookService = bookService;
+        this.authorService = authorService;
     }
 
     // http://localhost:8080/bookshop/
@@ -34,7 +35,6 @@ public class BookShopController {
     @GetMapping("/books")
     public String books(Model model) {
 
-        BookService bookService = context.getBean((BookService.class));
         List<Book> books = bookService.getBooks();
 
         model.addAttribute(
@@ -48,7 +48,6 @@ public class BookShopController {
     @GetMapping("/authors")
     public String authors(Model model) {
 
-        AuthorService authorService = context.getBean((AuthorService.class));
         List<Author> authors = authorService.getAuthors();
 
         model.addAttribute(
