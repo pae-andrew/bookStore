@@ -11,7 +11,7 @@ import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
 public interface BookStorageRepository extends JpaRepository<BookStorage, Long> {
 
     @Query(value = "select * from book_storage bs " +
-            "where bs.book_id = ?1",
+            "where bs.book_id = ?1 for update",
             nativeQuery = true)
     BookStorage getByBook(Book book);
 }

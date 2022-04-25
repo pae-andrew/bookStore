@@ -1,6 +1,8 @@
 package ru.learnUp.lesson23.hibernate.dao.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -10,19 +12,24 @@ import javax.persistence.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@AllArgsConstructor
+@Data
 public class BookStorage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "book_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Book book;
 
     @Column
     private int countOfBooks;
 
-    @Version
-    private long version;
+    public BookStorage(Book book, int count) {
+        this.book = book;
+        this.countOfBooks = count;
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.services.*;
+import ru.learnUp.lesson23.hibernate.exceptions.NotEnoughBooksException;
 
 @Slf4j
 @SpringBootApplication
@@ -19,7 +20,7 @@ public class HibernateApplication {
 
 		ConfigurableApplicationContext context = SpringApplication.run(HibernateApplication.class, args);
 
-		BookService bookService = context.getBean(BookService.class);
+//		BookService bookService = context.getBean(BookService.class);
 //		BookStorageService bookStorageService = context.getBean((BookStorageService.class));
 
 		// -- Check method Searching book by author
@@ -36,12 +37,12 @@ public class HibernateApplication {
 
 	static void updateAsync(BookStorageService service, Book book) {
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 			new Thread(() -> {
 				try {
 					service.buyBook(book, 2);
 					log.info("Cool, you just bought this book!");
-				} catch (ObjectOptimisticLockingFailureException | StaleStateException e) {
+				} catch (NotEnoughBooksException e) {
 					log.warn("Sorry, you can't buy this book... try again later");
 				}
 			}).start();

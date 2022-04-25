@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BookFilter {
+public class AuthorFilter {
 
-    private final String name;
+    private final String fullName;
 }

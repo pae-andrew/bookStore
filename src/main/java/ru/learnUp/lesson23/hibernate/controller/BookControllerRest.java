@@ -1,12 +1,13 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
-import org.springframework.data.redis.core.BoundKeyOperations;
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.filters.BookFilter;
 import ru.learnUp.lesson23.hibernate.dao.services.BookService;
 import ru.learnUp.lesson23.hibernate.view.BookView;
 
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,25 +25,25 @@ public class BookControllerRest {
 
     // get books
     @GetMapping
-    public List<Book> getBooks(
+    public List<BookView> getBooks(
             @RequestParam(value = "name", required = false) String name
     ) {
-        return bookService.getBooksBy(new BookFilter(name));
+        return mapper.mapToViewList(bookService.getBooksBy(new BookFilter(name)));
     }
 
     @GetMapping("/{bookId}")
-    public BookView getPost(@PathVariable("bookId") Long bookId) {
+    public BookView getBook(@PathVariable("bookId") Long bookId) {
         return mapper.mapToView(bookService.getBookById(bookId));
     }
 
     // add book
     @PostMapping
     public BookView createBook(@RequestBody BookView body) {
-//        if (body.getId() != null) {
-//            throw new EntityExistsException(
-//                    String.format("Post with id = %s already exist", body.getId())
-//            );
-//        }
+        if (body.getId() != null) {
+            throw new EntityExistsException(
+                    String.format("Post with id = %s already exist", body.getId())
+            );
+        }
         Book book = mapper.mapFromView(body);
         Book createdBook = bookService.createBook(book);
         return mapper.mapToView(createdBook);
@@ -54,9 +55,9 @@ public class BookControllerRest {
             @PathVariable("bookId") Long bookId,
             @RequestBody BookView body
     ) {
-//        if (body.getId() == null) {
-//            throw new EntityNotFoundException("Try to found null entity");
-//        }
+        if (body.getId() == null) {
+            throw new EntityNotFoundException("Try to found null entity");
+        }
         if (!Objects.equals(bookId, body.getId())) {
             throw new RuntimeException("Entity has bad id");
         }
@@ -80,6 +81,6 @@ public class BookControllerRest {
     // delete book
     @DeleteMapping("/{bookId}")
     public Boolean deleteBook(@PathVariable("bookId") Long id) {
-        return bookService.deleteBook(id);
+        return bookService.delete(id);
     }
 }

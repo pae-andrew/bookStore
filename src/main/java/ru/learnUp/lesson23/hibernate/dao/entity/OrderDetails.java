@@ -18,18 +18,18 @@ public class OrderDetails{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "books_order_id", nullable = false)
     private BooksOrder booksOrder;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn
     @ToString.Exclude
-    private List<Book> book;
+    private Book book;
 
     @Column
-    private int countOfBooks;
+    private int countOfBook;
 
     @Column
-    private int priceOfBooks;
+    private int priceOfBook;
 }

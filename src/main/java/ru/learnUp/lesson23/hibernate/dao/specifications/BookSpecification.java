@@ -1,4 +1,4 @@
-package ru.learnUp.lesson23.hibernate.dao.repository;
+package ru.learnUp.lesson23.hibernate.dao.specifications;
 
 import org.springframework.data.jpa.domain.Specification;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;

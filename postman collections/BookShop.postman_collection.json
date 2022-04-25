@@ -10,9 +10,41 @@
 			"item": [
 				{
 					"name": "create book",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Anna Karenina4\",\n    \"countOfSheets\": 864,\n    \"publishYear\": 1875,\n    \"price\": 875,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    },\n    \"storages\": [\n        {\n            \"countOfBooks\": 10\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop"
+							]
+						}
 					},
 					"response": []
 				},
@@ -40,7 +72,20 @@
 					"name": "get book by id",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop",
+								"3"
+							]
+						}
 					},
 					"response": []
 				},
@@ -48,20 +93,166 @@
 					"name": "update book",
 					"request": {
 						"method": "PUT",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "delete book by name",
-					"request": {
-						"method": "DELETE",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 10,\n    \"name\": \"Anna Karenina newest\",\n    \"countOfShits\": 864,\n    \"publishYear\": 1875,\n    \"price\": 875,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop",
+								"10"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "delete book by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop",
+								"19"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AuthorsController",
+			"item": [
+				{
+					"name": "create author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Lev Tolstoy2\",\n    \"books\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/authors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get author by filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/authors?fullName=Lev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"authors"
+							],
+							"query": [
+								{
+									"key": "fullName",
+									"value": "Lev"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get author by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/authors/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"authors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update author",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : 4,\n    \"fullName\": \"Andrew\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/authors/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"authors",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete author by id",
 					"request": {
 						"method": "DELETE",
 						"header": []
@@ -71,7 +262,141 @@
 			]
 		},
 		{
-			"name": "AuthorsController",
+			"name": "ClientController",
+			"item": [
+				{
+					"name": "create client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Andrew\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get client by filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get client by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/client/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"fullName\": \"Andrew\",\n    \"birthDate\": \"1997-12-28T22:40:15.000+00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/client/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"client",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete client by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/client/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"client",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StorageController",
+			"item": []
+		},
+		{
+			"name": "OrderController",
+			"item": []
+		},
+		{
+			"name": "OrderDetailsController",
 			"item": []
 		}
 	]

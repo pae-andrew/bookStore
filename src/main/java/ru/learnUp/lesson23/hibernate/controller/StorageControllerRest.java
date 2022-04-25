@@ -1,0 +1,82 @@
+package ru.learnUp.lesson23.hibernate.controller;
+
+import org.springframework.web.bind.annotation.*;
+import ru.learnUp.lesson23.hibernate.dao.entity.Book;
+import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
+import ru.learnUp.lesson23.hibernate.dao.services.BookStorageService;
+import ru.learnUp.lesson23.hibernate.view.BookStorageView;
+
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
+import java.util.Objects;
+
+
+@RestController
+@RequestMapping("rest/storage")
+public class StorageControllerRest {
+
+    private final BookStorageService bookStorageService;
+    private final BookStorageView mapper;
+
+    public StorageControllerRest(BookStorageService bookStorageService, BookStorageView mapper) {
+        this.bookStorageService = bookStorageService;
+        this.mapper = mapper;
+    }
+
+    // get storage
+//    @GetMapping
+//    public List<BookStorage> getStorage(
+//            @RequestParam(value = "book", required = false) String book
+//    ) {
+//        return bookStorageService.getBookStorage(new StorageFilter(book));
+//    }
+
+    @GetMapping("/{storageId}")
+    public BookStorageView getStrorageById(@PathVariable("storageId") Long storageId) {
+        return mapper.mapToView(bookStorageService.getBookStorageById(storageId));
+    }
+
+    // add storage
+    @PostMapping
+    public BookStorageView createStorage(@RequestBody BookStorageView body) {
+        if (body.getId() != null) {
+            throw new EntityExistsException(
+                    String.format("Post with id = %s already exist", body.getId())
+            );
+        }
+        BookStorage storage = mapper.mapFromView(body);
+        BookStorage createdStorage = bookStorageService.createBookStorage(storage);
+        return mapper.mapToView(createdStorage);
+    }
+
+    // update storage
+    @PutMapping("/{storageId}")
+    public BookStorageView updateStorage(
+            @PathVariable("storageId") Long storageId,
+            @RequestBody BookStorageView body
+    ) {
+        if (body.getId() == null) {
+            throw new EntityNotFoundException("Try to found null entity");
+        }
+        if (!Objects.equals(storageId, body.getId())) {
+            throw new RuntimeException("Entity has bad id");
+        }
+
+        BookStorage storage = bookStorageService.getBookStorageById(storageId);
+
+        if (storage.getCountOfBooks() != body.getCountOfBooks()) {
+            storage.setCountOfBooks(body.getCountOfBooks());
+        }
+
+        BookStorage updated = bookStorageService.update(storage);
+
+        return mapper.mapToView(updated);
+
+    }
+
+    // delete storage
+    @DeleteMapping("/{storageId}")
+    public Boolean deleteAStorage(@PathVariable("storageId") Long id) {
+        return bookStorageService.deleteStorage(id);
+    }
+}

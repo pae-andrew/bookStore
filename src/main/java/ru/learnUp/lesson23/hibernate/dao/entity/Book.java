@@ -1,10 +1,10 @@
 package ru.learnUp.lesson23.hibernate.dao.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,7 +12,6 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 @ToString
 @Builder
-//@NoArgsConstructor
 @AllArgsConstructor
 public class Book implements Serializable {
 
@@ -24,7 +23,7 @@ public class Book implements Serializable {
     private String name;
 
     @Column
-    private int countOfShits;
+    private int countOfSheets;
 
     @Column
     private int publishYear;
@@ -35,4 +34,8 @@ public class Book implements Serializable {
     @ManyToOne
     @JoinColumn
     private Author author;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<BookStorage> storage;
+
 }
