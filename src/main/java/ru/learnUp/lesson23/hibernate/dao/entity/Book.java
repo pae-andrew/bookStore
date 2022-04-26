@@ -36,6 +36,6 @@ public class Book implements Serializable {
     private Author author;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<BookStorage> storage;
+    private List<BookStorage> storages;
 
 }

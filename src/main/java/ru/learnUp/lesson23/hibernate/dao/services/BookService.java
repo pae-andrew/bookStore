@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.filters.BookFilter;
 import ru.learnUp.lesson23.hibernate.dao.repository.BookRepository;
+import ru.learnUp.lesson23.hibernate.exceptions.NameAlreadyExists;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class BookService {
 
     @Transactional
     public Book createBook(Book book) {
+        if (bookRepository.getBookByName(book.getName()) != null) {
+            throw new NameAlreadyExists("This name already exists");
+        }
         return bookRepository.save(book);
     }
 
@@ -38,6 +42,10 @@ public class BookService {
     public Boolean delete(Long id) {
         bookRepository.delete(bookRepository.findBook1(id));
         return true;
+    }
+
+    public Book getBookByName(String name) {
+        return bookRepository.getBookByName(name);
     }
 
 //    @Cacheable(value = "Book")

@@ -1,8 +1,8 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
 import org.springframework.web.bind.annotation.*;
-import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
+import ru.learnUp.lesson23.hibernate.dao.services.BookService;
 import ru.learnUp.lesson23.hibernate.dao.services.BookStorageService;
 import ru.learnUp.lesson23.hibernate.view.BookStorageView;
 
@@ -17,10 +17,13 @@ public class StorageControllerRest {
 
     private final BookStorageService bookStorageService;
     private final BookStorageView mapper;
+    private final BookService bookService;
 
-    public StorageControllerRest(BookStorageService bookStorageService, BookStorageView mapper) {
+    public StorageControllerRest(BookStorageService bookStorageService, BookStorageView mapper,
+                                 BookService bookService) {
         this.bookStorageService = bookStorageService;
         this.mapper = mapper;
+        this.bookService = bookService;
     }
 
     // get storage
@@ -41,11 +44,14 @@ public class StorageControllerRest {
     public BookStorageView createStorage(@RequestBody BookStorageView body) {
         if (body.getId() != null) {
             throw new EntityExistsException(
-                    String.format("Post with id = %s already exist", body.getId())
+                    String.format("BookStorage with id = %s already exist", body.getId())
             );
         }
-        BookStorage storage = mapper.mapFromView(body);
-        BookStorage createdStorage = bookStorageService.createBookStorage(storage);
+        BookStorage storage = mapper.mapFromView(body, bookService);
+        BookStorage createdStorage = bookStorageService.update(storage);
+//        Book book = createdStorage.getBook();
+//        book.setStorage(createdStorage);
+//        bookService.update(book);
         return mapper.mapToView(createdStorage);
     }
 

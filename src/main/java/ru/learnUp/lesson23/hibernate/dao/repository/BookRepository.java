@@ -1,11 +1,9 @@
 package ru.learnUp.lesson23.hibernate.dao.repository;
 
-import liquibase.pro.packaged.W;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import ru.learnUp.lesson23.hibernate.dao.entity.Author;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 
 import java.util.List;
@@ -32,4 +30,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "where b.id = ?1",
             nativeQuery = true)
     Book findBook1(Long id);
+
+    @Query(value = "select * from book b " +
+            "where b.name = ?1",
+            nativeQuery = true)
+    Book getBookByName(String name);
 }

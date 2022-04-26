@@ -37,13 +37,6 @@ public class AuthorView {
         return view;
     }
 
-    public Author mapFromView(AuthorView view) {
-        Author author = new Author();
-        author.setId(view.getId());
-        author.setFullName(view.getFullName());
-        return author;
-    }
-
     public List<AuthorView> mapToViewList(List<Author> authors) {
         List<AuthorView> views = new ArrayList<>();
         for (Author author : authors) {
@@ -62,4 +55,11 @@ public class AuthorView {
         }
         return views;
     }
+
+    public Author mapFromView(AuthorView view) {
+        Author author = new Author();
+        author.setFullName(view.getFullName());
+        return author;
+    }
+
 }

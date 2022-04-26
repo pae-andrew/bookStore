@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.learnUp.lesson23.hibernate.dao.entity.Author;
 import ru.learnUp.lesson23.hibernate.dao.filters.AuthorFilter;
 import ru.learnUp.lesson23.hibernate.dao.repository.AuthorRepository;
+import ru.learnUp.lesson23.hibernate.exceptions.NameAlreadyExists;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class AuthorService {
 
     @Transactional
     public Author createAuthor(Author author) {
+        if (authorRepository.getAuthorByName(author.getFullName()) != null) {
+            throw new NameAlreadyExists("This name already exists");
+        }
         return authorRepository.save(author);
     }
 

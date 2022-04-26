@@ -1,13 +1,12 @@
 package ru.learnUp.lesson23.hibernate;
 
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.StaleStateException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
+import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
 import ru.learnUp.lesson23.hibernate.dao.services.*;
 import ru.learnUp.lesson23.hibernate.exceptions.NotEnoughBooksException;
 

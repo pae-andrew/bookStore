@@ -1,10 +1,8 @@
 package ru.learnUp.lesson23.hibernate.dao.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "order_details")

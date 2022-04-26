@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.learnUp.lesson23.hibernate.dao.entity.Author;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
-import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class BookView {
 
     private AuthorViewForBook author;
 
-    private List<BookStorageView> storages;
+    private List<BookStorageViewForBook> storages;
 
     public BookView mapToView(Book book) {
         BookView view = new BookView();
@@ -40,34 +39,14 @@ public class BookView {
         view.setCountOfSheets(book.getCountOfSheets());
         view.setPublishYear(book.getPublishYear());
         view.setAuthor(new AuthorViewForBook(book.getAuthor().getId(), book.getAuthor().getFullName()));
-        if (book.getStorage() != null) {
+        if (book.getStorages() != null) {
             view.setStorages(
-                    book.getStorage().stream()
-                            .map(storage -> new BookStorageView(storage.getId(), storage.getCountOfBooks()))
+                    book.getStorages().stream()
+                            .map(storage -> new BookStorageViewForBook(storage.getId(), storage.getAddress(), storage.getCountOfBooks()))
                             .collect(Collectors.toList())
             );
         }
         return view;
-    }
-
-    public Book mapFromView(BookView view) {
-        Book book = new Book();
-        List<Book> books = new ArrayList<>();
-        book.setId(view.getId());
-        book.setName(view.getName());
-        book.setPrice(view.getPrice());
-        book.setCountOfSheets(view.getCountOfSheets());
-        book.setPublishYear(view.getPublishYear());
-        if (view.getStorages() != null) {
-            book.setStorage(
-                    view.getStorages().stream()
-                            .map(storage -> new BookStorage(book, storage.getCountOfBooks()))
-                            .collect(Collectors.toList())
-            );
-        }
-        books.add(book);
-        book.setAuthor(new Author(view.getAuthor().getId(), view.getAuthor().getFullName(), books));
-        return book;
     }
 
     public List<BookView> mapToViewList(List<Book> books) {
@@ -80,15 +59,28 @@ public class BookView {
             view.setCountOfSheets(book.getCountOfSheets());
             view.setPublishYear(book.getPublishYear());
             view.setAuthor(new AuthorViewForBook(book.getAuthor().getId(), book.getAuthor().getFullName()));
-            if (book.getStorage() != null) {
+            if (book.getStorages() != null) {
                 view.setStorages(
-                        book.getStorage().stream()
-                                .map(storage -> new BookStorageView(storage.getId(), storage.getCountOfBooks()))
+                        book.getStorages().stream()
+                                .map(storage -> new BookStorageViewForBook(storage.getId(), storage.getAddress(), storage.getCountOfBooks()))
                                 .collect(Collectors.toList())
                 );
             }
             views.add(view);
         }
         return views;
+    }
+
+    public Book mapFromView(BookView view) {
+        Book book = new Book();
+        List<Book> books = new ArrayList<>();
+        book.setId(view.getId());
+        book.setName(view.getName());
+        book.setPrice(view.getPrice());
+        book.setCountOfSheets(view.getCountOfSheets());
+        book.setPublishYear(view.getPublishYear());
+        books.add(book);
+        book.setAuthor(new Author(view.getAuthor().getId(), view.getAuthor().getFullName(), books));
+        return book;
     }
 }

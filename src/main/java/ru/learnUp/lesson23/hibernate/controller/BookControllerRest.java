@@ -40,9 +40,7 @@ public class BookControllerRest {
     @PostMapping
     public BookView createBook(@RequestBody BookView body) {
         if (body.getId() != null) {
-            throw new EntityExistsException(
-                    String.format("Post with id = %s already exist", body.getId())
-            );
+            throw new EntityExistsException("Book id must be null");
         }
         Book book = mapper.mapFromView(body);
         Book createdBook = bookService.createBook(book);
@@ -71,6 +69,14 @@ public class BookControllerRest {
         if (book.getPrice() != body.getPrice()) {
             book.setPrice(body.getPrice());
         }
+
+//        if (book.getStorages() == null && body.getStorage() != null) {
+//            book.setStorages(new BookStorage(body.getStorage().getId(), book, body.getStorage().getCountOfBooks()));
+//        }
+//
+//        if (book.getStorages().getCountOfBooks() != body.getStorage().getCountOfBooks()) {
+//            book.getStorages().setCountOfBooks(body.getStorage().getCountOfBooks());
+//        }
 
         Book updated = bookService.update(book);
 

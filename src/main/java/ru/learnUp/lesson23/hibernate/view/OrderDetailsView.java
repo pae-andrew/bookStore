@@ -1,18 +1,10 @@
 package ru.learnUp.lesson23.hibernate.view;
 
 import lombok.Data;
-import lombok.ToString;
 import org.springframework.stereotype.Component;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.entity.BooksOrder;
-import ru.learnUp.lesson23.hibernate.dao.entity.Client;
 import ru.learnUp.lesson23.hibernate.dao.entity.OrderDetails;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.List;
 
 @Data
 @Component
