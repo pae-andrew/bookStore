@@ -6,143 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "BooksController",
-			"item": [
-				{
-					"name": "create book",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Anna Karenina4\",\n    \"countOfSheets\": 864,\n    \"publishYear\": 1875,\n    \"price\": 875,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    },\n    \"storages\": [\n        {\n            \"countOfBooks\": 10\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/rest/bookshop",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"bookshop"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get books by filter",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/bookshop",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"bookshop"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get book by id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/bookshop/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"bookshop",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update book",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": 10,\n    \"name\": \"Anna Karenina newest\",\n    \"countOfShits\": 864,\n    \"publishYear\": 1875,\n    \"price\": 875,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/rest/bookshop/10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"bookshop",
-								"10"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete book by id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/bookshop/19",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"bookshop",
-								"19"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "AuthorsController",
 			"item": [
 				{
@@ -152,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"fullName\": \"Lev Tolstoy2\",\n    \"books\": []\n}",
+							"raw": "{\n    \"fullName\": \"Lev Tolstoy9\",\n    \"books\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -253,6 +116,222 @@
 				},
 				{
 					"name": "delete author by id",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BooksController",
+			"item": [
+				{
+					"name": "create book",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Anna Karenina12\",\n    \"countOfSheets\": 864,\n    \"publishYear\": 1875,\n    \"price\": 875,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    },\n    \"storage\": {\n        \"countOfBooks\": 10\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get books by filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop/43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop",
+								"43"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 10,\n    \"name\": \"Anna Karenina newest\",\n    \"countOfShits\": 864,\n    \"publishYear\": 1875,\n    \"price\": 875,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete book by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/bookshop/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"bookshop",
+								"19"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StorageController",
+			"item": [
+				{
+					"name": "create storage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book\": {\n        \"name\": \"Anna Karenina12\",\n        \"countOfSheets\": 864,\n        \"publishYear\": 1875,\n        \"price\": 875,\n        \"author\": {\n         \"id\": 1,\n            \"fullName\": \"Lev Tolstoy\"\n    }\n    },\n    \"countOfBooks\": 20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/storage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"storage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get storage by filter",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get storage by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/storage/25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"storage",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update storage",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete storage",
 					"request": {
 						"method": "DELETE",
 						"header": []
@@ -386,10 +465,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "StorageController",
-			"item": []
 		},
 		{
 			"name": "OrderController",
