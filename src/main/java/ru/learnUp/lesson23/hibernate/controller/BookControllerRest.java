@@ -8,6 +8,7 @@ import ru.learnUp.lesson23.hibernate.view.BookView;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,9 +27,11 @@ public class BookControllerRest {
     // get books
     @GetMapping
     public List<BookView> getBooks(
-            @RequestParam(value = "name", required = false) String name
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "publishYear", required = false) String publishYear,
+            @RequestParam(value = "price", required = false) String price
     ) {
-        return mapper.mapToViewList(bookService.getBooksBy(new BookFilter(name)));
+        return mapper.mapToViewList(bookService.getBooksBy(new BookFilter(name, publishYear, price)));
     }
 
     @GetMapping("/{bookId}")
@@ -69,14 +72,6 @@ public class BookControllerRest {
         if (book.getPrice() != body.getPrice()) {
             book.setPrice(body.getPrice());
         }
-
-//        if (book.getStorages() == null && body.getStorage() != null) {
-//            book.setStorages(new BookStorage(body.getStorage().getId(), book, body.getStorage().getCountOfBooks()));
-//        }
-//
-//        if (book.getStorages().getCountOfBooks() != body.getStorage().getCountOfBooks()) {
-//            book.getStorages().setCountOfBooks(body.getStorage().getCountOfBooks());
-//        }
 
         Book updated = bookService.update(book);
 

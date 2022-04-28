@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class StorageFilter {
 
-    private final String book;
+    private final String bookName;
 }

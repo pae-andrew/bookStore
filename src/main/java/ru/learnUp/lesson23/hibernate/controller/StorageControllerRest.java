@@ -2,12 +2,14 @@ package ru.learnUp.lesson23.hibernate.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
+import ru.learnUp.lesson23.hibernate.dao.filters.StorageFilter;
 import ru.learnUp.lesson23.hibernate.dao.services.BookService;
 import ru.learnUp.lesson23.hibernate.dao.services.BookStorageService;
 import ru.learnUp.lesson23.hibernate.view.BookStorageView;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -27,15 +29,15 @@ public class StorageControllerRest {
     }
 
     // get storage
-//    @GetMapping
-//    public List<BookStorage> getStorage(
-//            @RequestParam(value = "book", required = false) String book
-//    ) {
-//        return bookStorageService.getBookStorage(new StorageFilter(book));
-//    }
+    @GetMapping
+    public List<BookStorageView> getStorage(
+            @RequestParam(value = "bookName", required = false) String bookName
+    ) {
+        return mapper.mapToViewList(bookStorageService.getBookStorageBy(new StorageFilter(bookName)));
+    }
 
     @GetMapping("/{storageId}")
-    public BookStorageView getStrorageById(@PathVariable("storageId") Long storageId) {
+    public BookStorageView getStorageById(@PathVariable("storageId") Long storageId) {
         return mapper.mapToView(bookStorageService.getBookStorageById(storageId));
     }
 
@@ -49,9 +51,6 @@ public class StorageControllerRest {
         }
         BookStorage storage = mapper.mapFromView(body, bookService);
         BookStorage createdStorage = bookStorageService.update(storage);
-//        Book book = createdStorage.getBook();
-//        book.setStorage(createdStorage);
-//        bookService.update(book);
         return mapper.mapToView(createdStorage);
     }
 

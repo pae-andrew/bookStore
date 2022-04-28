@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"fullName\": \"Lev Tolstoy9\",\n    \"books\": []\n}",
+							"raw": "{\n    \"fullName\": \"Lev Tolstoy\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -145,7 +145,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Anna Karenina12\",\n    \"countOfSheets\": 864,\n    \"publishYear\": 1875,\n    \"price\": 875,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    },\n    \"storage\": {\n        \"countOfBooks\": 10\n    }\n}",
+							"raw": "{\n    \"name\": \"War and peace\",\n    \"countOfSheets\": 2345,\n    \"publishYear\": 1865,\n    \"price\": 318,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -173,7 +173,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/bookshop",
+							"raw": "http://localhost:8080/rest/bookshop/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -181,7 +181,25 @@
 							"port": "8080",
 							"path": [
 								"rest",
-								"bookshop"
+								"bookshop",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "War",
+									"disabled": true
+								},
+								{
+									"key": "publishYear",
+									"value": "1865",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "0",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -193,7 +211,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/bookshop/43",
+							"raw": "http://localhost:8080/rest/bookshop/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -202,7 +220,7 @@
 							"path": [
 								"rest",
 								"bookshop",
-								"43"
+								"2"
 							]
 						}
 					},
@@ -271,7 +289,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"book\": {\n        \"name\": \"Anna Karenina12\",\n        \"countOfSheets\": 864,\n        \"publishYear\": 1875,\n        \"price\": 875,\n        \"author\": {\n         \"id\": 1,\n            \"fullName\": \"Lev Tolstoy\"\n    }\n    },\n    \"countOfBooks\": 20\n}",
+							"raw": "{\n    \"book\": {\n    \"name\": \"War and peace\"\n},\n    \"countOfBooks\": 34\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -297,7 +315,26 @@
 					"name": "get storage by filter",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/storage/?bookName=Ann",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"storage",
+								""
+							],
+							"query": [
+								{
+									"key": "bookName",
+									"value": "Ann"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -307,7 +344,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/storage/25",
+							"raw": "http://localhost:8080/rest/storage/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -316,7 +353,7 @@
 							"path": [
 								"rest",
 								"storage",
-								"25"
+								"1"
 							]
 						}
 					},

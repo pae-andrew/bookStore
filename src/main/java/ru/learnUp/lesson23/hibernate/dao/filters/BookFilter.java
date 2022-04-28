@@ -8,4 +8,9 @@ import lombok.Data;
 public class BookFilter {
 
     private final String name;
+
+    private final String publishYear;
+
+    private final String price;
+
 }

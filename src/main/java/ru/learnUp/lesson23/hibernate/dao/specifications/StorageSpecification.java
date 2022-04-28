@@ -14,8 +14,8 @@ public class StorageSpecification {
 
             Predicate predicate = cb.isNotNull(root.get("id"));
 
-            if (filter.getBook() != null) {
-                predicate = cb.and(predicate, cb.like(root.get("name"), "%" + filter.getBook() + "%"));
+            if (filter.getBookName() != null) {
+                predicate = cb.and(predicate, cb.like(root.get("book").get("name"), "%" + filter.getBookName() + "%"));
             }
             return predicate;
         };
