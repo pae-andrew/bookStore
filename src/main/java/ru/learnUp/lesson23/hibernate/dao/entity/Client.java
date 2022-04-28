@@ -4,9 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "client")
 @Getter
 @Setter
 @ToString
@@ -22,4 +22,7 @@ public class Client {
 
     @Column
     private Date birthDate;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<BooksOrder> orders;
 }

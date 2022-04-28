@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order_details")
 @Getter
 @Setter
 @ToString
@@ -16,13 +15,12 @@ public class OrderDetails{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "books_order_id", nullable = false)
+    @ManyToOne
+    @JoinColumn
     private BooksOrder booksOrder;
 
     @OneToOne
     @JoinColumn
-    @ToString.Exclude
     private Book book;
 
     @Column

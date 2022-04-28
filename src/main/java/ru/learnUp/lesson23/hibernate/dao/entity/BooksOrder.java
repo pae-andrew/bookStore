@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "booksOrder")
 @Getter
 @Setter
 @ToString
@@ -17,13 +16,13 @@ public class BooksOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private Client client;
 
     @Column
     private int orderCost;
 
-    @OneToMany
-    private List<OrderDetails> orderDetailsList;
+    @OneToMany(mappedBy = "booksOrder", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<OrderDetails> details;
 }

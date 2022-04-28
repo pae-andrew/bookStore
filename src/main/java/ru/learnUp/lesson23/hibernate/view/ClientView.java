@@ -4,7 +4,9 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 import ru.learnUp.lesson23.hibernate.dao.entity.Client;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Component
@@ -22,6 +24,18 @@ public class ClientView {
         view.setFullName(client.getFullName());
         view.setBirthDate(client.getBirthDate());
         return view;
+    }
+
+    public List<ClientView> mapToViewList(List<Client> clients) {
+        List<ClientView> views = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientView view = new ClientView();
+            view.setId(client.getId());
+            view.setFullName(client.getFullName());
+            view.setBirthDate(client.getBirthDate());
+            views.add(view);
+        });
+        return views;
     }
 
     public Client mapFromView(ClientView view) {

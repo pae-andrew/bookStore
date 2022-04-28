@@ -25,10 +25,10 @@ public class ClientControllerRest {
 
     // get clients
     @GetMapping
-    public List<Client> getClients(
+    public List<ClientView> getClients(
             @RequestParam(value = "fullName", required = false) String fullName
     ) {
-        return clientService.getClientBy(new ClientFilter(fullName));
+        return mapper.mapToViewList(clientService.getClientBy(new ClientFilter(fullName)));
     }
 
     @GetMapping("/{clientId}")
@@ -40,9 +40,7 @@ public class ClientControllerRest {
     @PostMapping
     public ClientView createBook(@RequestBody ClientView body) {
         if (body.getId() != null) {
-            throw new EntityExistsException(
-                    String.format("Post with id = %s already exist", body.getId())
-            );
+            throw new EntityExistsException("Client's id must be null");
         }
         Client client = mapper.mapFromView(body);
         Client createdClient = clientService.createClient(client);
