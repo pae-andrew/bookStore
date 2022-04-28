@@ -31,9 +31,10 @@ public class StorageControllerRest {
     // get storage
     @GetMapping
     public List<BookStorageView> getStorage(
-            @RequestParam(value = "bookName", required = false) String bookName
+            @RequestParam(value = "bookName", required = false) String bookName,
+            @RequestParam(value = "address", required = false) String address
     ) {
-        return mapper.mapToViewList(bookStorageService.getBookStorageBy(new StorageFilter(bookName)));
+        return mapper.mapToViewList(bookStorageService.getBookStorageBy(new StorageFilter(bookName, address)));
     }
 
     @GetMapping("/{storageId}")

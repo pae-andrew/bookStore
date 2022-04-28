@@ -17,6 +17,11 @@ public class StorageSpecification {
             if (filter.getBookName() != null) {
                 predicate = cb.and(predicate, cb.like(root.get("book").get("name"), "%" + filter.getBookName() + "%"));
             }
+
+            if (filter.getAddress() != null) {
+                predicate = cb.and(predicate, cb.like(root.get("address"), "%" + filter.getAddress() + "%"));
+            }
+
             return predicate;
         };
     }

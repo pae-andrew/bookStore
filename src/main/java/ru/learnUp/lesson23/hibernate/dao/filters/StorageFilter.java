@@ -8,4 +8,6 @@ import lombok.Data;
 public class StorageFilter {
 
     private final String bookName;
+
+    private final String address;
 }
