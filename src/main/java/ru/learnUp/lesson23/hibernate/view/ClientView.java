@@ -1,6 +1,8 @@
 package ru.learnUp.lesson23.hibernate.view;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.learnUp.lesson23.hibernate.dao.entity.Client;
 
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Data
 @Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClientView {
 
     private Long id;
