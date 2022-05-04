@@ -82,7 +82,7 @@ public class StorageControllerRest {
 
     // delete storage
     @DeleteMapping("/{storageId}")
-    public Boolean deleteAStorage(@PathVariable("storageId") Long id) {
+    public Boolean deleteStorage(@PathVariable("storageId") Long id) {
         return bookStorageService.deleteStorage(id);
     }
 }

@@ -26,28 +26,40 @@ public class BooksOrderView {
 
     public BooksOrderView mapToView(BooksOrder booksOrder) {
         BooksOrderView view = new BooksOrderView();
+        int cost = 0;
         view.setId(booksOrder.getId());
         view.setClient(new ClientView(booksOrder.getClient().getId(),
                 booksOrder.getClient().getFullName(),
                 booksOrder.getClient().getBirthDate()));
         view.setOrderCost(booksOrder.getOrderCost());
-//        int cost = 0;
-//        booksOrder.getDetails().stream()
-//                .map(OrderDetails::getPriceOfBook)
-//                .forEach(price -> cost += price)));
-//        view.setOrderCost();
+        if (booksOrder.getDetails() != null) {
+            for (OrderDetails orderDetails : booksOrder.getDetails()) {
+                cost += orderDetails.getPriceOfBook();
+            }
+            view.setOrderCost(cost);
+        } else {
+            view.setOrderCost(booksOrder.getOrderCost());
+        }
         return view;
     }
 
     public List<BooksOrderView> mapToViewList(List<BooksOrder> booksOrders) {
         List<BooksOrderView> views = new ArrayList<>();
         booksOrders.forEach(booksOrder -> {
+            int cost = 0;
             BooksOrderView view = new BooksOrderView();
             view.setId(booksOrder.getId());
             view.setClient(new ClientView(booksOrder.getClient().getId(),
                     booksOrder.getClient().getFullName(),
                     booksOrder.getClient().getBirthDate()));
-            view.setOrderCost(booksOrder.getOrderCost());
+            if (booksOrder.getDetails() != null) {
+                for (OrderDetails orderDetails : booksOrder.getDetails()) {
+                    cost += orderDetails.getPriceOfBook();
+                }
+                view.setOrderCost(cost);
+            } else {
+                view.setOrderCost(booksOrder.getOrderCost());
+            }
             views.add(view);
         });
         return views;

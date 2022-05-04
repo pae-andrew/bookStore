@@ -26,4 +26,9 @@ public class OrderDetailsService {
     public OrderDetails getOrderDetailById(Long id) {
         return orderDetailsRepository.getById(id);
     }
+
+    public Boolean delete(Long id) {
+        orderDetailsRepository.delete(orderDetailsRepository.getById(id));
+        return true;
+    }
 }
