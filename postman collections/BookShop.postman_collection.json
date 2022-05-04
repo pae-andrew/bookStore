@@ -597,7 +597,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/order/1",
+							"raw": "http://localhost:8080/rest/order/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -606,7 +606,7 @@
 							"path": [
 								"rest",
 								"order",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -621,7 +621,28 @@
 					"name": "order details create",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"booksOrder\": {\n        \"id\": 1\n    },\n    \"book\": {\n        \"name\": \"War and peace\"\n    },\n    \"countOfBook\": 10,\n    \"priceOfBook\": 2625\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/order_details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"order_details"
+							]
+						}
 					},
 					"response": []
 				},
@@ -639,7 +660,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/order_details/1",
+							"raw": "http://localhost:8080/rest/order_details/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -648,7 +669,7 @@
 							"path": [
 								"rest",
 								"order_details",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -666,7 +687,20 @@
 					"name": "order details delete",
 					"request": {
 						"method": "DELETE",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rest/order_details/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"order_details",
+								"3"
+							]
+						}
 					},
 					"response": []
 				}
