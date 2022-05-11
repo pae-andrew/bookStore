@@ -1,5 +1,6 @@
 package ru.learnUp.lesson23.hibernate.exceptions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @ControllerAdvice
 public class ExceptionProcessor {
 
@@ -27,7 +29,7 @@ public class ExceptionProcessor {
         List<String> stackTrace = Arrays.stream(ex.getStackTrace())
                 .map(Objects::toString)
                 .toList();
-
+        log.error("", ex);
         return new ResponseEntity<>(stackTrace, HttpStatus.BAD_REQUEST);
     }
 }

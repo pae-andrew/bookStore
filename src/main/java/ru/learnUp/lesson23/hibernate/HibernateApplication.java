@@ -7,11 +7,18 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
+import ru.learnUp.lesson23.hibernate.dao.entity.Role;
+import ru.learnUp.lesson23.hibernate.dao.entity.User;
 import ru.learnUp.lesson23.hibernate.dao.services.*;
 import ru.learnUp.lesson23.hibernate.exceptions.NotEnoughBooksException;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(/*exclude = SecurityAutoConfiguration.class*/)
 @EnableCaching
 public class HibernateApplication {
 
