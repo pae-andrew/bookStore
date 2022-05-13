@@ -32,7 +32,7 @@ public class HibernateApplication {
 //		user.setUsername("Ivan");
 //		user.setPassword("098765");
 //		Set<Role> roles = roleRepository.findAll().stream()
-//				.map(role -> roleRepository.findByName(role.getRole()))
+//				.map(role -> roleRepository.findById(1L))
 //				.collect(Collectors.toSet());
 //		user.setRoles(roles);
 //		userService.create(user);
