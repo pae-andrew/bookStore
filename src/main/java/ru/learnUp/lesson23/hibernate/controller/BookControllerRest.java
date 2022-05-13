@@ -1,5 +1,6 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.filters.BookFilter;
@@ -40,6 +41,7 @@ public class BookControllerRest {
     }
 
     // add book
+    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public BookView createBook(@RequestBody BookView body) {
         if (body.getId() != null) {
@@ -51,6 +53,7 @@ public class BookControllerRest {
     }
 
     // update book
+    @Secured({"ROLE_ADMIN"})
     @PutMapping("/{bookId}")
     public BookView updateBook(
             @PathVariable("bookId") Long bookId,
@@ -80,6 +83,7 @@ public class BookControllerRest {
     }
 
     // delete book
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/{bookId}")
     public Boolean deleteBook(@PathVariable("bookId") Long id) {
         return bookService.delete(id);

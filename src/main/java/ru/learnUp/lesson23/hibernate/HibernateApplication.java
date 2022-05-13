@@ -9,22 +9,33 @@ import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.entity.BookStorage;
 import ru.learnUp.lesson23.hibernate.dao.entity.Role;
 import ru.learnUp.lesson23.hibernate.dao.entity.User;
+import ru.learnUp.lesson23.hibernate.dao.repository.RoleRepository;
 import ru.learnUp.lesson23.hibernate.dao.services.*;
 import ru.learnUp.lesson23.hibernate.exceptions.NotEnoughBooksException;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
-@SpringBootApplication(/*exclude = SecurityAutoConfiguration.class*/)
+@SpringBootApplication()
 @EnableCaching
 public class HibernateApplication {
 
 	public static void main(String[] args) throws InterruptedException {
 
 		ConfigurableApplicationContext context = SpringApplication.run(HibernateApplication.class, args);
+
+//		User user = new User();
+//		UserService userService = context.getBean(UserService.class);
+//		RoleRepository roleRepository = context.getBean(RoleRepository.class);
+//
+//		user.setUsername("Ivan");
+//		user.setPassword("098765");
+//		Set<Role> roles = roleRepository.findAll().stream()
+//				.map(role -> roleRepository.findByName(role.getRole()))
+//				.collect(Collectors.toSet());
+//		user.setRoles(roles);
+//		userService.create(user);
 
 //		BookService bookService = context.getBean(BookService.class);
 //		BookStorageService bookStorageService = context.getBean((BookStorageService.class));

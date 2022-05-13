@@ -1,5 +1,6 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.BooksOrder;
 import ru.learnUp.lesson23.hibernate.dao.filters.OrderFilter;
@@ -52,6 +53,7 @@ public class OrderControllerRest {
 
     // update order
     @PutMapping("/{orderId}")
+    @Secured({"ROLE_USER"})
     public BooksOrderView updateOrder(
             @PathVariable("orderId") Long orderId,
             @RequestBody BooksOrderView body

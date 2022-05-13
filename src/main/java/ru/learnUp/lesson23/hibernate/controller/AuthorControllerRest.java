@@ -1,5 +1,6 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.Author;
 import ru.learnUp.lesson23.hibernate.dao.filters.AuthorFilter;
@@ -37,6 +38,7 @@ public class AuthorControllerRest {
     }
 
     // add author
+    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public AuthorView createAuthor(@RequestBody AuthorView body) {
         if (body.getId() != null) {
@@ -50,6 +52,7 @@ public class AuthorControllerRest {
     }
 
     // update author
+    @Secured({"ROLE_ADMIN"})
     @PutMapping("/{authorId}")
     public AuthorView updateAuthor(
             @PathVariable("authorId") Long authorId,
@@ -75,6 +78,7 @@ public class AuthorControllerRest {
     }
 
     // delete author
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/{authorId}")
     public Boolean deleteAuthor(@PathVariable("authorId") Long id) {
         return authorService.deleteAuthor(id);

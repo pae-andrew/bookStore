@@ -10,6 +10,7 @@ import ru.learnUp.lesson23.hibernate.dao.repository.RoleRepository;
 import ru.learnUp.lesson23.hibernate.dao.repository.UserRepository;
 
 import javax.persistence.EntityExistsException;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -59,5 +60,9 @@ public class UserService implements UserDetailsService {
 
     public User findById(Long id) {
         return userRepository.getById(id);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

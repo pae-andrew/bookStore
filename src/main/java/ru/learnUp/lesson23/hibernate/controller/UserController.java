@@ -1,18 +1,13 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import ru.learnUp.lesson23.hibernate.dao.entity.Role;
-import ru.learnUp.lesson23.hibernate.dao.entity.User;
 import ru.learnUp.lesson23.hibernate.dao.repository.RoleRepository;
 import ru.learnUp.lesson23.hibernate.dao.services.UserService;
-import ru.learnUp.lesson23.hibernate.view.BookView;
-import ru.learnUp.lesson23.hibernate.view.RoleView;
 import ru.learnUp.lesson23.hibernate.view.UserView;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -20,46 +15,31 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserService userService;
+    private final UserView mapping;
     private final RoleRepository roleRepository;
 
-    public UserController(UserService userService, RoleRepository roleRepository) {
+    public UserController(UserService userService, RoleRepository roleRepository, UserView mapping) {
         this.userService = userService;
         this.roleRepository = roleRepository;
+        this.mapping = mapping;
     }
 
     @PostMapping
-    public Boolean createUser(@RequestBody UserView user) {
-        log.info("HI!");
-        User entity = new User();
-        Set<Role> roles = user.getRoles().stream()
-                .map(role -> roleRepository.findByName(role.getRole()))
-                .collect(Collectors.toSet());
-
-        entity.setUsername(user.getLogin());
-        entity.setPassword(user.getPassword());
-        entity.setRoles(roles);
-//        entity.setRoles(
-//                user.getRoles()
-//                        .stream()
-//                        .map(RoleView::getRole)
-//                        .map(Role::new)
-//                        .collect(Collectors.toSet())
-//        );
-        userService.create(entity);
+    public Boolean createUser(@RequestBody UserView view) {
+        userService.create(mapping.mapFromView(view, roleRepository));
         return true;
     }
 
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping
+    public List<UserView> getUsers() {
+        return mapping.mapToView(userService.findAll());
+    }
+
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/{userId}")
     public UserView getUser(@PathVariable("userId") Long userId) {
-        UserView view = new UserView();
-        User user = userService.findById(userId);
-        Set<RoleView> roles = user.getRoles().stream()
-                .map(role -> new RoleView(role.getRole()))
-                .collect(Collectors.toSet());
-        view.setLogin(user.getUsername());
-        view.setPassword(user.getPassword());
-        view.setRoles(roles);
-        return view;
+        return mapping.mapToView(userService.findById(userId));
     }
 
 }
