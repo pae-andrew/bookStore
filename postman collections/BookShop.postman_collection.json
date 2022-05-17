@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"fullName\": \"Lev Tolstoy\"\n}",
+							"raw": "{\n    \"fullName\": \"Nikolai Gogol\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -69,7 +69,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/authors/1",
+							"raw": "http://localhost:8080/rest/authors/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -78,7 +78,7 @@
 							"path": [
 								"rest",
 								"authors",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -145,7 +145,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"War and peace\",\n    \"countOfSheets\": 2345,\n    \"publishYear\": 1865,\n    \"price\": 318,\n    \"author\": {\n        \"id\": 1,\n        \"fullName\": \"Lev Tolstoy\"\n    }\n}",
+							"raw": "{\n    \"name\": \"Dead Souls\",\n    \"countOfSheets\": 470,\n    \"publishYear\": 1842,\n    \"price\": 420,\n    \"author\": {\n        \"id\": 2,\n        \"fullName\": \"Nikolai Gogol\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -173,7 +173,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/bookshop/",
+							"raw": "http://localhost:8080/rest/bookshop/?name=Dead",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -187,8 +187,7 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "War",
-									"disabled": true
+									"value": "Dead"
 								},
 								{
 									"key": "publishYear",
@@ -316,7 +315,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"book\": {\n    \"name\": \"War and peace\"\n},\n    \"countOfBooks\": 34\n}",
+							"raw": "{\n    \"book\": {\n    \"name\": \"Dead Souls\"\n},\n    \"countOfBooks\": 56\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -391,7 +390,16 @@
 					"name": "update storage",
 					"request": {
 						"method": "PUT",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
 					},
 					"response": []
 				},
@@ -796,12 +804,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "Ivan",
+							"value": "Andrew",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "098765",
+							"value": "12345",
 							"type": "text"
 						}
 					]
@@ -817,6 +825,22 @@
 						"login"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "send message",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "purchase",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
