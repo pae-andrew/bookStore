@@ -4,10 +4,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
 import ru.learnUp.lesson23.hibernate.dao.entity.BooksOrder;
 import ru.learnUp.lesson23.hibernate.dao.entity.OrderDetails;
-import ru.learnUp.lesson23.hibernate.dao.services.BookService;
-import ru.learnUp.lesson23.hibernate.dao.services.BooksOrderService;
-import ru.learnUp.lesson23.hibernate.dao.services.ClientService;
-import ru.learnUp.lesson23.hibernate.dao.services.OrderDetailsService;
+import ru.learnUp.lesson23.hibernate.dao.services.*;
+import ru.learnUp.lesson23.hibernate.exceptions.NotEnoughBooksException;
+import ru.learnUp.lesson23.hibernate.view.BookViewForPurchase;
 import ru.learnUp.lesson23.hibernate.view.PurchaseFromView;
 
 @RestController
@@ -18,38 +17,55 @@ public class PurchaseControllerRest {
     private final BooksOrderService orderService;
     private final OrderDetailsService detailsService;
     private final BookService bookService;
+    private final BookStorageService storageService;
 
     public PurchaseControllerRest(ClientService clientService,
                                   BooksOrderService orderService,
                                   OrderDetailsService detailsService,
-                                  BookService bookService) {
+                                  BookService bookService, BookStorageService storageService) {
         this.clientService = clientService;
         this.orderService = orderService;
         this.detailsService = detailsService;
         this.bookService = bookService;
+        this.storageService = storageService;
     }
 
     @PostMapping
     public String createPurchase(@RequestBody PurchaseFromView purchaseView) {
 
+        for (BookViewForPurchase bookFromView : purchaseView.getBooks()) {
+            if (storageService.getStorageByBook(
+                    bookService.
+                            getBookByName(bookFromView.getBookName()))
+                    .getCountOfBooks() < bookFromView.getCountOfBook()) {
+                return "Not enough books: \"" + bookFromView.getBookName() + "\"\n"
+                        + "We have just "
+                        + storageService.getStorageByBook(bookService.
+                                getBookByName(bookFromView.getBookName()))
+                        .getCountOfBooks()
+                        + " book/s...";
+            }
+        }
+
+        StringBuilder result = new StringBuilder("");
         BooksOrder order = new BooksOrder();
         order.setClient(clientService.getClientById(purchaseView.getClientId()));
         BooksOrder createdOrder = orderService.createBooksOrder(order);
 
-        int i = -1;
-        for (String bookName : purchaseView.getBookName()) {
-            i++;
+        for (BookViewForPurchase bookFromView : purchaseView.getBooks()) {
             OrderDetails detail = new OrderDetails();
-            Book book = bookService.getBookByName(bookName);
+            Book book = bookService.getBookByName(bookFromView.getBookName());
+            storageService.buyBook(book, bookFromView.getCountOfBook());
+            result.append("You bought \"" + bookFromView.getBookName() + "\" successfully.\n");
             detail.setBook(book);
             detail.setBooksOrder(createdOrder);
-            detail.setCountOfBook(purchaseView.getCountOfBooks().get(i));
+            detail.setCountOfBook(bookFromView.getCountOfBook());
             detail.setPriceOfBook(book.getPrice() * detail.getCountOfBook());
             detailsService.createOrderDetail(detail);
             createdOrder.setOrderCost(createdOrder.getOrderCost() + detail.getPriceOfBook());
             orderService.update(createdOrder);
         }
 
-        return "Done";
+        return result.toString() + "Thank you!";
     }
 }
