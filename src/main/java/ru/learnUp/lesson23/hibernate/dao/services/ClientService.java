@@ -39,6 +39,10 @@ public class ClientService {
         return clientRepository.findAll(specification);
     }
 
+    public Client getClientByName(String name) {
+        return clientRepository.getByName(name);
+    }
+
     @Transactional
 //    @CacheEvict(value = "client", key = "#client.id")
     public Client update(Client client) {

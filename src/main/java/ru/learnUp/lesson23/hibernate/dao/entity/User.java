@@ -2,6 +2,7 @@ package ru.learnUp.lesson23.hibernate.dao.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -18,6 +19,10 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    private Client client;
 
     @Column
     private String username;

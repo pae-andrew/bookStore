@@ -1,9 +1,14 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
+import io.lettuce.core.dynamic.annotation.Param;
+import jdk.jfr.Unsigned;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import ru.learnUp.lesson23.hibernate.dao.entity.User;
 import ru.learnUp.lesson23.hibernate.dao.repository.RoleRepository;
+import ru.learnUp.lesson23.hibernate.dao.services.ClientService;
 import ru.learnUp.lesson23.hibernate.dao.services.UserService;
 import ru.learnUp.lesson23.hibernate.view.UserView;
 
@@ -17,16 +22,20 @@ public class UserController {
     private final UserService userService;
     private final UserView mapping;
     private final RoleRepository roleRepository;
+    private final ClientService clientService;
 
-    public UserController(UserService userService, RoleRepository roleRepository, UserView mapping) {
+    public UserController(UserService userService, RoleRepository roleRepository, UserView mapping, ClientService clientService) {
         this.userService = userService;
         this.roleRepository = roleRepository;
         this.mapping = mapping;
+        this.clientService = clientService;
     }
 
     @PostMapping
     public Boolean createUser(@RequestBody UserView view) {
-        userService.create(mapping.mapFromView(view, roleRepository));
+        User user = userService.create(mapping.mapFromView(view, roleRepository, clientService));
+        clientService.getClientByName(user.getUsername()).setUser(user);
+        clientService.update(clientService.getClientByName(user.getUsername()));
         return true;
     }
 

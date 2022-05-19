@@ -9,7 +9,6 @@ import java.util.List;
 @Component
 public class PurchaseFromView {
 
-    private Long clientId;
     private List<BookViewForPurchase> books;
 
 }

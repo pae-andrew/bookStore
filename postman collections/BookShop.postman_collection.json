@@ -578,7 +578,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/order?clientName=Andr",
+							"raw": "http://localhost:8080/rest/order",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -591,7 +591,8 @@
 							"query": [
 								{
 									"key": "clientName",
-									"value": "Andr"
+									"value": "Andr",
+									"disabled": true
 								}
 							]
 						}
@@ -752,7 +753,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\": \"Andrew4\",\n    \"password\": \"9876\",\n    \"roles\": [\n        {\n            \"role\": \"ROLE_USER\"\n        }\n    ]\n}",
+							"raw": "{\n    \"login\": \"paeandrew\",\n    \"password\": \"Pae551255\",\n    \"roles\": [\n        {\n            \"role\": \"ROLE_USER\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -805,12 +806,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "Andrew",
+							"value": "paeandrew1",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "12345",
+							"value": "Pae551255",
 							"type": "text"
 						}
 					]
@@ -873,7 +874,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"clientId\": 1,\n    \"books\": [\n        {\n            \"bookName\": \"War and peace\",\n            \"countOfBook\": 3\n        },\n        {\n            \"bookName\": \"Anna Karenina\",\n            \"countOfBook\": 7\n        }\n    ]\n}",
+					"raw": "{\n    \"books\": [\n        {\n            \"bookName\": \"War and peace\",\n            \"countOfBook\": 1\n        },\n        {\n            \"bookName\": \"Anna Karenina\",\n            \"countOfBook\": 1\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"

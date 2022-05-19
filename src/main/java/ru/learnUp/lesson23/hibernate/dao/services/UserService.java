@@ -35,10 +35,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    public void create(User user) {
+    public User create(User user) {
         User exist = userRepository.findByUsername(user.getUsername());
         if (exist != null) {
-            throw new EntityExistsException("login with login "
+            throw new EntityExistsException("User with login "
                     + user.getUsername() + " already exist");
         }
         String password = passwordEncoder.encode(user.getPassword());
@@ -52,6 +52,7 @@ public class UserService implements UserDetailsService {
         user.setRoles(existRoles);
         existRoles.forEach(role -> role.setUsers(Set.of(user)));
         userRepository.save(user);
+        return userRepository.findByUsername(user.getUsername());
     }
 
     public void addRole(User user, Role role) {
@@ -65,4 +66,5 @@ public class UserService implements UserDetailsService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
 }
