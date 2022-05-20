@@ -7,10 +7,17 @@ import org.springframework.stereotype.Component;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import java.io.IOException;
 
 @Component
 @Slf4j
 public class MessageConsumer implements MessageListener {
+
+   private final FileDirectoryProvider fileDirectoryProvider;
+
+    public MessageConsumer(FileDirectoryProvider fileDirectoryProvider) {
+        this.fileDirectoryProvider = fileDirectoryProvider;
+    }
 
     @JmsListener(destination = "${topic.name}")
     @Override
@@ -23,4 +30,9 @@ public class MessageConsumer implements MessageListener {
             log.error("Received Exception : "+ e);
         }
     }
+
+    public void writeIntoFile(String fileName, String text) throws IOException {
+        fileDirectoryProvider.writeString(fileName, text);
+    }
+
 }

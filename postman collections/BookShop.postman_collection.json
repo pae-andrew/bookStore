@@ -806,12 +806,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "Ivan",
+							"value": "paeandrew",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Ivan",
+							"value": "Pae551255",
 							"type": "text"
 						}
 					]
@@ -909,6 +909,28 @@
 					"port": "8080",
 					"path": [
 						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get historyFile by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/message/file/data/paeandrew_21.05.2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"message",
+						"file",
+						"data",
+						"paeandrew_21.05.2022"
 					]
 				}
 			},

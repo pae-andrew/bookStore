@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @Slf4j
 public record MessageProducer(String topicName, JmsTemplate jmsTemplate) {
@@ -24,4 +25,5 @@ public record MessageProducer(String topicName, JmsTemplate jmsTemplate) {
             log.error("Receive Exception during send Message: ", e);
         }
     }
+
 }

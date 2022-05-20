@@ -32,8 +32,8 @@ public class OrderHistory {
     @Override
     public String toString() {
         DateFormat df = new SimpleDateFormat("dd.MM.YYYY");
-        return "Order №: " + order.getId() + "\n"
+        return "{\nOrder №: " + order.getId() + "\n"
                 + "Date: " + df.format(cal.getTime()) + "\n"
-                + "Order cost: " + order.getOrderCost() + "\n";
+                + "Order cost: " + order.getOrderCost() + "\n}\n";
     }
 }
