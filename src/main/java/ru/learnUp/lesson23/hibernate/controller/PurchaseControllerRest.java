@@ -2,13 +2,12 @@ package ru.learnUp.lesson23.hibernate.controller;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import ru.learnUp.lesson23.hibernate.dao.entity.Book;
-import ru.learnUp.lesson23.hibernate.dao.entity.BooksOrder;
-import ru.learnUp.lesson23.hibernate.dao.entity.OrderDetails;
-import ru.learnUp.lesson23.hibernate.dao.entity.User;
+import ru.learnUp.lesson23.hibernate.dao.entity.*;
 import ru.learnUp.lesson23.hibernate.dao.services.*;
 import ru.learnUp.lesson23.hibernate.view.BookViewForPurchase;
 import ru.learnUp.lesson23.hibernate.view.PurchaseFromView;
+
+import java.util.Calendar;
 
 @RestController
 @RequestMapping("/purchase")
@@ -20,17 +19,19 @@ public class PurchaseControllerRest {
     private final BookService bookService;
     private final BookStorageService storageService;
     private final UserService userService;
+    private final OrderHistoryService historyService;
 
     public PurchaseControllerRest(ClientService clientService,
                                   BooksOrderService orderService,
                                   OrderDetailsService detailsService,
-                                  BookService bookService, BookStorageService storageService, UserService userService) {
+                                  BookService bookService, BookStorageService storageService, UserService userService, OrderHistoryService historyService) {
         this.clientService = clientService;
         this.orderService = orderService;
         this.detailsService = detailsService;
         this.bookService = bookService;
         this.storageService = storageService;
         this.userService = userService;
+        this.historyService = historyService;
     }
 
     @PostMapping
@@ -52,6 +53,7 @@ public class PurchaseControllerRest {
 
         StringBuilder result = new StringBuilder("");
         BooksOrder order = new BooksOrder();
+        OrderHistory orderHistory = new OrderHistory();
         User user = userService.loadUserByUsername(SecurityContextHolder
                 .getContext()
                 .getAuthentication()
@@ -70,8 +72,13 @@ public class PurchaseControllerRest {
             detail.setPriceOfBook(book.getPrice() * detail.getCountOfBook());
             detailsService.createOrderDetail(detail);
             createdOrder.setOrderCost(createdOrder.getOrderCost() + detail.getPriceOfBook());
-            orderService.update(createdOrder);
         }
+        orderService.update(createdOrder);
+
+        orderHistory.setClient(user.getClient());
+        orderHistory.setOrder(createdOrder);
+        orderHistory.setCal(Calendar.getInstance());
+        historyService.create(orderHistory);
 
         return result.toString() + "Thank you!";
     }

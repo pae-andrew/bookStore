@@ -753,7 +753,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\": \"paeandrew\",\n    \"password\": \"Pae551255\",\n    \"roles\": [\n        {\n            \"role\": \"ROLE_USER\"\n        }\n    ]\n}",
+							"raw": "{\n    \"login\": \"Ivan\",\n    \"password\": \"Ivan\",\n    \"roles\": [\n        {\n            \"role\": \"ROLE_USER\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -780,7 +780,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/6",
+							"raw": "http://localhost:8080/user/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -788,7 +788,7 @@
 							"port": "8080",
 							"path": [
 								"user",
-								"6"
+								"10"
 							]
 						}
 					},
@@ -806,12 +806,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "paeandrew1",
+							"value": "Ivan",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Pae551255",
+							"value": "Ivan",
 							"type": "text"
 						}
 					]
@@ -890,6 +890,25 @@
 					"port": "8080",
 					"path": [
 						"purchase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orderHistory from last 30 days",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"history"
 					]
 				}
 			},
