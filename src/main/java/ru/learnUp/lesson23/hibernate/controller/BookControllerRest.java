@@ -7,11 +7,7 @@ import ru.learnUp.lesson23.hibernate.dao.filters.BookFilter;
 import ru.learnUp.lesson23.hibernate.dao.services.BookService;
 import ru.learnUp.lesson23.hibernate.view.BookView;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
-import java.sql.SQLOutput;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("rest/bookshop")

@@ -7,11 +7,7 @@ import ru.learnUp.lesson23.hibernate.dao.services.BookService;
 import ru.learnUp.lesson23.hibernate.dao.services.BookStorageService;
 import ru.learnUp.lesson23.hibernate.view.BookStorageView;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Objects;
-
 
 @RestController
 @RequestMapping("rest/storage")
@@ -45,11 +41,6 @@ public class StorageControllerRest {
     // add storage
     @PostMapping
     public BookStorageView createStorage(@RequestBody BookStorageView body) {
-//        if (body.getId() != null) {
-//            throw new EntityExistsException(
-//                    String.format("BookStorage with id = %s already exist", body.getId())
-//            );
-//        }
         BookStorage storage = mapper.mapFromView(body, bookService, bookStorageService);
         BookStorage createdStorage = bookStorageService.update(storage);
         return mapper.mapToView(createdStorage);
@@ -61,12 +52,6 @@ public class StorageControllerRest {
             @PathVariable("storageId") Long storageId,
             @RequestBody BookStorageView body
     ) {
-//        if (body.getId() == null) {
-//            throw new EntityNotFoundException("Try to found null entity");
-//        }
-//        if (!Objects.equals(storageId, body.getId())) {
-//            throw new RuntimeException("Entity has bad id");
-//        }
 
         BookStorage storage = bookStorageService.getBookStorageById(storageId);
 

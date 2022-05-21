@@ -145,7 +145,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Dead Souls\",\n    \"countOfSheets\": 470,\n    \"publishYear\": 1842,\n    \"price\": 420,\n    \"author\": {\n        \"id\": 2,\n        \"fullName\": \"Nikolai Gogol\"\n    }\n}",
+							"raw": "{\n    \"name\": \"Dead Souls2\",\n    \"countOfSheets\": 470,\n    \"publishYear\": 1842,\n    \"price\": 420,\n    \"author\": {\n        \"id\": 2,\n        \"fullName\": \"Nikolai Gogol\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -452,6 +452,27 @@
 						"method": "GET",
 						"header": [],
 						"url": {
+							"raw": "http://localhost:8080/rest/client/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"client",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get client (for user)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
 							"raw": "http://localhost:8080/rest/client",
 							"protocol": "http",
 							"host": [
@@ -467,34 +488,13 @@
 					"response": []
 				},
 				{
-					"name": "get client (for user)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/client/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"client",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "update client",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 3,\n    \"fullName\": \"Andrew\",\n    \"birthDate\": \"1997-12-28T22:40:15.000+00:00\"\n}",
+							"raw": "{\n    \"fullName\": \"Irina\",\n    \"birthDate\": \"1977-02-05T00:00:00.000+00:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -502,7 +502,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/rest/client/3",
+							"raw": "http://localhost:8080/rest/client/update",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -511,7 +511,7 @@
 							"path": [
 								"rest",
 								"client",
-								"3"
+								"update"
 							]
 						}
 					},
@@ -605,7 +605,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/rest/order/3",
+							"raw": "http://localhost:8080/rest/order/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -614,7 +614,7 @@
 							"path": [
 								"rest",
 								"order",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -753,7 +753,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\": \"Ivan\",\n    \"password\": \"Ivan\",\n    \"roles\": [\n        {\n            \"role\": \"ROLE_USER\"\n        }\n    ]\n}",
+							"raw": "{\n    \"login\": \"Irina\",\n    \"password\": 12345,\n    \"roles\": [\n        {\n            \"role\": \"ROLE_USER\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -806,12 +806,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "paeandrew",
+							"value": "Irina",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Pae551255",
+							"value": "12345",
 							"type": "text"
 						}
 					]
@@ -920,7 +920,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/message/file/data/paeandrew_21.05.2022",
+					"raw": "http://localhost:8080/message/file/data/Irina_21.05.2022",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -930,7 +930,7 @@
 						"message",
 						"file",
 						"data",
-						"paeandrew_21.05.2022"
+						"Irina_21.05.2022"
 					]
 				}
 			},

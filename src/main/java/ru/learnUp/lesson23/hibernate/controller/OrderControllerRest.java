@@ -37,8 +37,8 @@ public class OrderControllerRest {
 //        return mapper.mapToViewList(orderService.getOrdersBy(new OrderFilter(clientName)));
 //    }
 
+    @PreAuthorize("#user.name == authentication.principal.username")
     @GetMapping
-    @PreAuthorize("#user.name = authentication.principal.username")
     public List<BooksOrderView> getOrders(Principal user) {
         return mapper.mapToViewList(orderService.getOrdersBy(new OrderFilter(user.getName())));
     }

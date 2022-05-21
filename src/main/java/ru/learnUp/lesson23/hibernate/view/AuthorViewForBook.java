@@ -11,7 +11,5 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class AuthorViewForBook {
 
-//    private Long id;
-
     private String fullName;
 }

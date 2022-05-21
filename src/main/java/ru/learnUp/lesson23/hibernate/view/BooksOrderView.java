@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BooksOrderView {
+
     private Long id;
 
     private ClientView client;

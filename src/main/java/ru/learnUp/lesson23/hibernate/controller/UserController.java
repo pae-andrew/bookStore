@@ -1,10 +1,7 @@
 package ru.learnUp.lesson23.hibernate.controller;
 
-import io.lettuce.core.dynamic.annotation.Param;
-import jdk.jfr.Unsigned;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.User;
 import ru.learnUp.lesson23.hibernate.dao.repository.RoleRepository;

@@ -2,7 +2,6 @@ package ru.learnUp.lesson23.hibernate.controller;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.lesson23.hibernate.dao.entity.Client;
 import ru.learnUp.lesson23.hibernate.dao.entity.User;
@@ -11,11 +10,8 @@ import ru.learnUp.lesson23.hibernate.dao.services.ClientService;
 import ru.learnUp.lesson23.hibernate.dao.services.UserService;
 import ru.learnUp.lesson23.hibernate.view.ClientView;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
 import java.security.Principal;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("rest/client")
@@ -76,7 +72,12 @@ public class ClientControllerRest {
             client.setFullName(body.getFullName());
         }
 
-        if (!client.getBirthDate().equals(body.getBirthDate())) {
+        if (!(client.getBirthDate() == null)) {
+            if (!client.getBirthDate().equals(body.getBirthDate()))
+                {client.setBirthDate(body.getBirthDate());}
+        }
+
+        if (client.getBirthDate() == null) {
             client.setBirthDate(body.getBirthDate());
         }
 
