@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ClientView {
 
-    private Long id;
+//    private Long id;
 
     private String fullName;
 
@@ -24,7 +24,7 @@ public class ClientView {
 
     public ClientView mapToView(Client client) {
         ClientView view = new ClientView();
-        view.setId(client.getId());
+//        view.setId(client.getId());
         view.setFullName(client.getFullName());
         view.setBirthDate(client.getBirthDate());
         return view;
@@ -34,7 +34,7 @@ public class ClientView {
         List<ClientView> views = new ArrayList<>();
         clients.forEach(client -> {
             ClientView view = new ClientView();
-            view.setId(client.getId());
+//            view.setId(client.getId());
             view.setFullName(client.getFullName());
             view.setBirthDate(client.getBirthDate());
             views.add(view);
@@ -44,7 +44,7 @@ public class ClientView {
 
     public Client mapFromView(ClientView view) {
         Client client = new Client();
-        client.setId(view.getId());
+//        client.setId(view.getId());
         client.setFullName(view.getFullName());
         client.setBirthDate(view.getBirthDate());
         return client;

@@ -24,7 +24,11 @@ public class PurchaseControllerRest {
     public PurchaseControllerRest(ClientService clientService,
                                   BooksOrderService orderService,
                                   OrderDetailsService detailsService,
-                                  BookService bookService, BookStorageService storageService, UserService userService, OrderHistoryService historyService) {
+                                  BookService bookService,
+                                  BookStorageService storageService,
+                                  UserService userService,
+                                  OrderHistoryService historyService) {
+
         this.clientService = clientService;
         this.orderService = orderService;
         this.detailsService = detailsService;
@@ -65,7 +69,7 @@ public class PurchaseControllerRest {
             OrderDetails detail = new OrderDetails();
             Book book = bookService.getBookByName(bookFromView.getBookName());
             storageService.buyBook(book, bookFromView.getCountOfBook());
-            result.append("You bought \"" + bookFromView.getBookName() + "\" successfully.\n");
+            result.append("You bought \"").append(bookFromView.getBookName()).append("\" successfully.\n");
             detail.setBook(book);
             detail.setBooksOrder(createdOrder);
             detail.setCountOfBook(bookFromView.getCountOfBook());

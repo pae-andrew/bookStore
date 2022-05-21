@@ -447,7 +447,7 @@
 					"response": []
 				},
 				{
-					"name": "get client by filter",
+					"name": "get all clients (for admin)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -467,7 +467,7 @@
 					"response": []
 				},
 				{
-					"name": "get client by id",
+					"name": "get client (for user)",
 					"request": {
 						"method": "GET",
 						"header": [],

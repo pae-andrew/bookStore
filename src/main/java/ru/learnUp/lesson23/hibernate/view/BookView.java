@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.learnUp.lesson23.hibernate.dao.entity.Author;
 import ru.learnUp.lesson23.hibernate.dao.entity.Book;
+import ru.learnUp.lesson23.hibernate.dao.services.BookService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class BookView {
 
-    private Long id;
+//    private Long id;
 
     private String name;
 
@@ -33,16 +34,17 @@ public class BookView {
 
     public BookView mapToView(Book book) {
         BookView view = new BookView();
-        view.setId(book.getId());
+//        view.setId(book.getId());
         view.setName(book.getName());
         view.setPrice(book.getPrice());
         view.setCountOfSheets(book.getCountOfSheets());
         view.setPublishYear(book.getPublishYear());
-        view.setAuthor(new AuthorViewForBook(book.getAuthor().getId(), book.getAuthor().getFullName()));
+        view.setAuthor(new AuthorViewForBook(book.getAuthor().getFullName()));
         if (book.getStorages() != null) {
             view.setStorages(
                     book.getStorages().stream()
-                            .map(storage -> new BookStorageViewForBook(storage.getId(), storage.getAddress(), storage.getCountOfBooks()))
+                            .map(storage -> new BookStorageViewForBook(storage.getId(),
+                                    storage.getAddress(), storage.getCountOfBooks()))
                             .collect(Collectors.toList())
             );
         }
@@ -53,12 +55,12 @@ public class BookView {
         List<BookView> views = new ArrayList<>();
         for (Book book : books) {
             BookView view = new BookView();
-            view.setId(book.getId());
+//            view.setId(book.getId());
             view.setName(book.getName());
             view.setPrice(book.getPrice());
             view.setCountOfSheets(book.getCountOfSheets());
             view.setPublishYear(book.getPublishYear());
-            view.setAuthor(new AuthorViewForBook(book.getAuthor().getId(), book.getAuthor().getFullName()));
+            view.setAuthor(new AuthorViewForBook(book.getAuthor().getFullName()));
             if (book.getStorages() != null) {
                 view.setStorages(
                         book.getStorages().stream()
@@ -71,16 +73,19 @@ public class BookView {
         return views;
     }
 
-    public Book mapFromView(BookView view) {
+    public Book mapFromView(BookView view, BookService bookService) {
         Book book = new Book();
         List<Book> books = new ArrayList<>();
-        book.setId(view.getId());
+//        book.setId(book.se);
         book.setName(view.getName());
         book.setPrice(view.getPrice());
         book.setCountOfSheets(view.getCountOfSheets());
         book.setPublishYear(view.getPublishYear());
         books.add(book);
-        book.setAuthor(new Author(view.getAuthor().getId(), view.getAuthor().getFullName(), books));
+        book.setAuthor(new Author(bookService.getBookByName(
+                view.getName()).getAuthor().getId(),
+                view.getAuthor().getFullName(), books));
+
         return book;
     }
 }

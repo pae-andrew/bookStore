@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 public class AuthorView {
 
-    private Long id;
+//    private Long id;
 
     private String fullName;
 
@@ -24,7 +24,7 @@ public class AuthorView {
 
     public AuthorView mapToView(Author author) {
         AuthorView view = new AuthorView();
-        view.setId(author.getId());
+//        view.setId(author.getId());
         view.setFullName(author.getFullName());
         if (author.getBooks() != null) {
             view.setBooks(
@@ -41,7 +41,7 @@ public class AuthorView {
         List<AuthorView> views = new ArrayList<>();
         for (Author author : authors) {
             AuthorView view = new AuthorView();
-            view.setId(author.getId());
+//            view.setId(author.getId());
             view.setFullName(author.getFullName());
             if (author.getBooks() != null) {
                 view.setBooks(
